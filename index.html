@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SentienX AI Trading Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/alpinejs" defer></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Header -->
+  <header class="bg-gray-800 p-4 flex justify-between items-center shadow-md">
+    <h1 class="text-2xl font-bold tracking-wider text-teal-400">🧠 SentienX AI Trading Dashboard</h1>
+    <span class="text-sm text-gray-300">Status: <span class="text-green-400 font-semibold">Online</span></span>
+  </header>
+
+  <!-- Main Content -->
+  <main class="p-6 space-y-8">
+
+    <!-- Modules Section -->
+    <section>
+      <h2 class="text-xl mb-4 font-semibold">🔧 Core Modules</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- AI Engine Card -->
+        <div class="bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition">
+          <h3 class="text-lg font-bold mb-2">🤖 AI Engine</h3>
+          <p class="text-gray-400 mb-2">Handles LSTM/NLP predictions and signal scoring.</p>
+          <div class="flex items-center space-x-2">
+            <span class="h-3 w-3 rounded-full bg-green-500"></span>
+            <span class="text-sm">Active</span>
+          </div>
+        </div>
+
+        <!-- Strategy Core -->
+        <div class="bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition">
+          <h3 class="text-lg font-bold mb-2">🎯 Strategy Architect</h3>
+          <p class="text-gray-400 mb-2">Real-time signal filtering, microstructure patterns, and ML logic.</p>
+          <div class="flex items-center space-x-2">
+            <span class="h-3 w-3 rounded-full bg-green-500"></span>
+            <span class="text-sm">Running</span>
+          </div>
+        </div>
+
+        <!-- Risk Control -->
+        <div class="bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition">
+          <h3 class="text-lg font-bold mb-2">🛡️ Risk Manager</h3>
+          <p class="text-gray-400 mb-2">Controls max loss, Martingale logic, and equity guardrails.</p>
+          <div class="flex items-center space-x-2">
+            <span class="h-3 w-3 rounded-full bg-yellow-400"></span>
+            <span class="text-sm">Monitoring</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Log Output -->
+    <section>
+      <h2 class="text-xl mb-4 font-semibold">📜 Real-Time Log</h2>
+      <div class="bg-gray-800 rounded-xl p-4 h-60 overflow-y-scroll text-sm font-mono">
+        <p>> [12:34:01] Strategy triggered: Sniper Setup Detected</p>
+        <p>> [12:34:02] LSTM Prediction: 5/5 Agreement</p>
+        <p>> [12:34:02] Trade Signal: BUY | Confidence Score: 92%</p>
+        <p>> [12:34:03] Executing trade...</p>
+        <p>> [12:34:07] Trade WIN | Profit +$5.00</p>
+        <!-- Add more logs dynamically via JS later -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 p-4 text-center text-gray-500 text-sm">
+    &copy; 2025 SentienX AI Trading Platform. All rights reserved.
+  </footer>
+
+</body>
+</html>
