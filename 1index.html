@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ authenticated: false, password: '', error: '' }" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SentienX Secure Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/alpinejs" defer></script>
+  <style>
+    ::selection {
+      background: #14b8a6;
+      color: white;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+<!-- LOGIN SCREEN -->
+<div x-show="!authenticated" x-transition class="h-screen flex items-center justify-center">
+  <div class="bg-gray-800 p-8 rounded-xl w-full max-w-md shadow-lg animate-fade-in">
+    <h1 class="text-2xl font-bold text-center text-teal-400 mb-4">🔐 SentienX Login</h1>
+    <p class="text-sm text-gray-400 mb-6 text-center">Enter password to access the AI Dashboard</p>
+    
+    <input type="password" placeholder="Password"
+           class="w-full p-3 mb-4 rounded-md bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500"
+           x-model="password"
+           @keyup.enter="authenticated = password === 'sentienx2025' ? true : (error = 'Invalid password')"/>
+           
+    <button @click="authenticated = password === 'sentienx2025' ? true : (error = 'Invalid password')"
+            class="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold p-3 rounded-md transition">
+      Login
+    </button>
+
+    <p class="text-red-400 text-sm mt-3" x-show="error" x-text="error"></p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div x-show="authenticated" x-transition class="animate-fade-in">
+
+  <!-- Header -->
+  <header class="bg-gray-800 shadow-md p-4 flex items-center justify-between">
+    <h1 class="text-2xl font-bold text-teal-400 animate-slide-in">SentienX AI Dashboard</h1>
+    <div class="text-sm text-gray-300">
+      Status: <span class="text-green-400 font-semibold">Online</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="p-6 space-y-10">
+
+    <!-- Module Overview -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4 animate-fade-in">🧩 System Modules</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Module Cards -->
+        <template x-for="module in [
+          { name: '🤖 AI Engine', desc: 'Processes LSTM/NLP predictions and signals.', status: 'green' },
+          { name: '🎯 Strategy Core', desc: 'Handles sniper setups & tick logic.', status: 'green' },
+          { name: '🛡️ Risk Manager', desc: 'Manages Martingale & drawdown protection.', status: 'yellow' }
+        ]">
+          <div class="bg-gray-800 p-5 rounded-xl shadow-md hover:shadow-xl transition animate-pop-in">
+            <h3 class="text-lg font-bold mb-2" x-text="module.name"></h3>
+            <p class="text-gray-400 mb-3" x-text="module.desc"></p>
+            <div class="flex items-center space-x-2">
+              <span :class="'h-3 w-3 rounded-full bg-' + module.status + '-500'"></span>
+              <span x-text="module.status === 'green' ? 'Active' : 'Monitoring'"></span>
+            </div>
+          </div>
+        </template>
+
+      </div>
+    </section>
+
+    <!-- Log Output -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4">📜 Real-Time Logs</h2>
+      <div class="bg-gray-800 rounded-xl p-4 h-64 overflow-y-scroll text-sm font-mono" id="logBox">
+        <p>> Initializing SentienX Modules...</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-center p-4 text-gray-500 text-sm">
+    &copy; 2025 SentienX. Built for intelligent trading.
+  </footer>
+
+</div>
+
+<!-- Animations -->
+<style>
+  .animate-fade-in { animation: fadeIn 1s ease-out; }
+  .animate-slide-in { animation: slideIn 0.8s ease-out; }
+  .animate-pop-in { animation: popIn 0.6s ease-out; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+<!-- Simulated Logs -->
+<script>
+  const logBox = document.getElementById('logBox');
+  const logs = [
+    '> [12:34:01] Sniper Signal: W-structure aligned',
+    '> [12:34:02] LSTM Prediction: 5/5 match → BUY',
+    '> [12:34:03] Executing trade...',
+    '> [12:34:07] ✅ Trade WIN | +$5.00',
+    '> [12:35:20] Martingale level reset',
+    '> [12:36:10] 📉 Volatility detected — pausing entry'
+  ];
+  let i = 0;
+  setInterval(() => {
+    if (i < logs.length && logBox) {
+      const p = document.createElement('p');
+      p.textContent = logs[i];
+      logBox.appendChild(p);
+      logBox.scrollTop = logBox.scrollHeight;
+      i++;
+    }
+  }, 1500);
+</script>
+
+</body>
+</html>
